@@ -129,10 +129,8 @@ public class MainForm {
 			String sql = "SELECT  employee.id,employee.Name,employee.BirthDate,employee.StartDate,employee.Salary,employee.Period,"
 					+ "department.Dep_name ,Contrat.TypeName From employee  LEFT OUTER JOIN department ON employee.Department_id = department.id "
 					+ "LEFT OUTER JOIN Contrat ON employee.Contrat_id = Contrat.id";
-			//String sql = "SELECT * FROM employee ";
 			pst = con.prepareStatement(sql);
 			rs=pst.executeQuery(sql);
-			//table.setModel(getdata());
 		       while(rs.next())
 		        {
 		    	   String id=rs.getString(1);
@@ -149,7 +147,6 @@ public class MainForm {
 		       return dm;
 		} catch (Exception ex) 
 		{
-			// TODO: handle exception
 			ex.printStackTrace();
 		}
 		return null;
@@ -184,7 +181,6 @@ public class MainForm {
 				,getCellValue(i,5)
 				,getCellValue(i,6)
 				,getCellValue(i,7)
-			//	,getCellValue(i,8)
 				});
 	}
 	
@@ -211,9 +207,7 @@ public class MainForm {
 		JOptionPane.showMessageDialog(null, "Data Exported To Excel File");
 	}
 	catch (FileNotFoundException ex) {
-	//	Logger.getLogger(Workbook.class.getName()).log(level, null, ex);
 	}catch (IOException ex) {
-		// TODO: handle exception
 	}
 	
 	
@@ -224,23 +218,12 @@ public class MainForm {
 	private void ShowTableData() {
 		dm.addColumn("name");
 		dm.addColumn("id");
-		// TODO Auto-generated method stub
 		try {
-			con =DriverManager.getConnection("jdbc:mysql://localhost/final","root","root");
-		//	String sql = "SELECT * FROM employee";
-		//	String sql = "SELECT e.id,e.name,e.BirthDate,e.StartDate,e.Salary,e.Period as employee_department FROM employee e JOIN department d ON e.Department_id =d.id ";
-			//String sql="select * from department inner join employee on department.id = employee.Department_id; ";
-			
-//			SELECT Orders.OrderID, Customers.CustomerName
-//			FROM Orders
-//			INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
-//			
+			con =DriverManager.getConnection("jdbc:mysql://localhost/final","root","root");			
 			String name=textSearch.getText();
 			String sql = "SELECT  employee.id,employee.Name,employee.BirthDate,employee.StartDate,employee.Salary,employee.Period,"
 					+ "department.Dep_name ,Contrat.TypeName From employee  LEFT OUTER JOIN department ON employee.Department_id = department.id "
 					+ "LEFT OUTER JOIN Contrat ON employee.Contrat_id = Contrat.id "+search;
-			
-			//String sql = "SELECT * FROM employee ";
 			pst = con.prepareStatement(sql);
 			if (search=="") {
 				rs=pst.executeQuery();
@@ -252,24 +235,14 @@ public class MainForm {
 				pst.setString(1, name);
 				rs=pst.executeQuery();
 				table.setModel(DbUtils.resultSetToTableModel(rs));	
-			}
-
-			//table.setModel(getdata());
+			};
 			
 		} catch (Exception ex) {
-			// TODO: handle exception
 			JOptionPane.showMessageDialog(null, ex);
 		}
 		
 		
-	}
-	
-//	private void writeToExecl() {
-//		XSSFWorkbook wb=new XSSFWorkbook();
-//		XSSFSheet ws=wb.createSheet();
-//		TreeMap<String, Object[]> data=new TreeMap<>();
-//		data.put("0", new Object() {table.});
-//	}	
+	}	
 	/**
 	 * Create the application.
 	 */
@@ -304,7 +277,7 @@ public class MainForm {
 		txt_emp_id.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Birth Date");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Rasheed\\eclipse-workspace\\Fanil_Project\\Icons\\calendar.png"));
+		lblNewLabel.setIcon(new ImageIcon("https://i.imgur.com/3qbaG44.png"));
 		lblNewLabel.setBounds(32, 61, 85, 30);
 		frame.getContentPane().add(lblNewLabel);
 		
@@ -312,32 +285,6 @@ public class MainForm {
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Rasheed\\eclipse-workspace\\Fanil_Project\\Icons\\fire-station.png"));
 		lblNewLabel_1.setBounds(32, 102, 99, 28);
 		frame.getContentPane().add(lblNewLabel_1);		
-		
-		//@SuppressWarnings("rawtypes")
-		
-	
-         
-//		try {
-//			Class.forName("com.mysql.jdbc.Driver");
-//			Connection con=DriverManager.getConnection(URL, "root", "root");
-//			String query="Select * from department";
-//			Statement stm=con.createStatement();
-//			
-//			ResultSet RES=stm.executeQuery(query);
-//		       while(RES.next())
-//		        {
-//		    	    xString=RES.getString(2);
-//		    	    Dep.addItem(xString); 
-////		    	   Dep.addItem(RES.getString(1)); 
-//	    	   //Dep.addItem(RES.getString(2)); 
-//		    	    System.out.println(xString);
-//			}
-//		
-//			
-//		} catch (ClassNotFoundException | SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con=DriverManager.getConnection(URL, "root", "root");
@@ -355,7 +302,6 @@ public class MainForm {
 		
 			
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		  JComboBox<Item> Dep;
@@ -372,16 +318,9 @@ public class MainForm {
 	      	        Item item = (Item)Dep.getSelectedItem();
 	      	      int intid=item.getId();
 	      	      Dep_id=String.valueOf(intid);
-	      	    //    System.out.println( intid + " : " + item.getDescription() );
 	        	}
 	        });
 	        Dep.setEnabled(true);
-	     //   Dep.addActionListener( (ActionListener) this );
-	      // getContentPane().add(Dep, BorderLayout.NORTH );
-			
-	       
-			
-			//JComboBox Dep = new JComboBox();
 	        class ItemRenderer extends BasicComboBoxRenderer
 	        {
 	            public Component getListCellRendererComponent(
@@ -480,30 +419,10 @@ public class MainForm {
 		JButton btnAdd = new JButton("New Employee ");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			//	txt_emp_id.setText("1");
-//				if (r1.isSelected()) {
-//					String mm = r1.getText();
-//					System.out.println(mm);	
-//				}else {
-//					String mm = r2.getText();
-//					System.out.println(mm);	
-//				}
-				//String date  = ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText();
-				
-				
-			//	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
-
-				//Calendar c = Calendar.getInstance();
-				//c.set(year, month, 1); // Specify day of month
-
-			//	String formattedDate = dateFormat.format(c.getTime());
-				//System.out.println(formattedDate);	
 				if (r1.isSelected()) {
 					 ContratType  = "1";
-			//		System.out.println(ContratType );	
 				}else {
 					 ContratType  = "2";
-					//System.out.println(ContratType );	
 				}
 				String Name=txtName.getText();
 				String BirthDate  = ((JTextField)dCBirth.getDateEditor().getUiComponent()).getText();
@@ -542,7 +461,6 @@ public class MainForm {
 						getdata();
 					}
 				} catch (ClassNotFoundException | SQLException  e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} 
 				
@@ -586,7 +504,6 @@ public class MainForm {
 					java.util.Date birthDate2 = format.parse(birthDate);
 					dCBirth.setDate(birthDate2);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				String startDate = model.getValueAt(sec, 3).toString();
@@ -595,11 +512,9 @@ public class MainForm {
 					java.util.Date startDate2 = format2.parse(startDate);
 					dCStart.setDate(startDate2);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				textSal.setText(model.getValueAt(sec, 4).toString());
-				//String mString=model.getValueAt(sec, 6).toString();
 				String Period=model.getValueAt(sec, 5).toString();
 				Integer intPeriod = Integer.valueOf(Period);
 				SMonth.setValue(intPeriod);
@@ -634,13 +549,7 @@ public class MainForm {
 						if(chooser.showOpenDialog(frame)==JFileChooser.APPROVE_OPTION) {
 						File out=chooser.getSelectedFile();
 						 path=out.getPath();
-					  //   System.out.println(out.getAbsolutePath()); 
-				      //    System.out.println(out.getAbsoluteFile()); 
-				      //    System.out.println(out.getPath()); 
-						 
 						 JOptionPane.showMessageDialog(null, "press Export to Export Data to:"+path);
-				        //  System.out.println(path); 
-				      //    btnSs.setName("EXPORT");
 				     }
 				}else {
 					writeToExecl();
@@ -668,13 +577,7 @@ public class MainForm {
 						if(chooser.showOpenDialog(frame)==JFileChooser.APPROVE_OPTION) {
 						File out=chooser.getSelectedFile();
 						 TextPath=out.getPath();
-					  //   System.out.println(out.getAbsolutePath()); 
-				      //    System.out.println(out.getAbsoluteFile()); 
-				      //    System.out.println(out.getPath()); 
-						 
 						 JOptionPane.showMessageDialog(null, "press Export to Export Data to:"+path);
-				        //  System.out.println(path); 
-				      //    btnSs.setName("EXPORT");
 				     }
 				}else {				
 					ExportText();
@@ -693,10 +596,8 @@ public class MainForm {
 			public void actionPerformed(ActionEvent update) {
 				if (r1.isSelected()) {
 					 ContratType  = "1";
-					//System.out.println(ContratType );	
 				}else {
-					 ContratType  = "2";
-				//	System.out.println(ContratType );	
+					 ContratType  = "2";	
 				}
 				String Name=txtName.getText();
 				String BirthDate  = ((JTextField)dCBirth.getDateEditor().getUiComponent()).getText();
@@ -714,7 +615,6 @@ public class MainForm {
 					Connection con=DriverManager.getConnection(URL, "root", "root");
 
 					String id=txt_emp_id.getText();
-					//String query="Update INTO employee (Name,BirthDate,StartDate,salary,Period,Department_id,Contrat_id) Values (?,?,?,?,?,?,1)";		
 					String query="UPDATE employee SET Name=?,BirthDate=?,StartDate=?,salary=?,Period=?,Department_id=?,Contrat_id=? WHERE id="+id;
 					PreparedStatement stm=con.prepareStatement(query);
 					stm.setString(1, Name);
@@ -736,7 +636,6 @@ public class MainForm {
 						getdata();
 					}
 				} catch (ClassNotFoundException | SQLException  update1) {
-					// TODO Auto-generated catch block
 					update1.printStackTrace();
 				} 
 			}
@@ -763,7 +662,6 @@ public class MainForm {
 		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\Rasheed\\eclipse-workspace\\Fanil_Project\\Icons\\research.png"));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	String name=textSearch.getText();
 				back="";
 				search="WHERE employee.Name=?";
 				ShowTableData();
@@ -819,10 +717,7 @@ public class MainForm {
 				String query="DELETE FROM employee WHERE id="+id;
 				PreparedStatement stm=con.prepareStatement(query);
 				int nb=stm.executeUpdate();
-				if(nb==1) {
-					//JOptionPane.showConfirmDialog(frame, , , 1);
-					
-				
+				if(nb==1) {	
 					ShowTableData();
 					
 					}
@@ -832,7 +727,6 @@ public class MainForm {
 					getdata();
 				}
 			} catch (ClassNotFoundException | SQLException  update1) {
-				// TODO Auto-generated catch block
 				update1.printStackTrace();
 			} 
 		}
@@ -842,29 +736,20 @@ public class MainForm {
 
 	protected void ExportText() {
         try{
-            //the file path
            File file = new File(TextPath);
-           //if the file not exist create one
            if(!file.exists()){
                file.createNewFile();
            }
            
            FileWriter fw = new FileWriter(file.getAbsoluteFile());
            BufferedWriter bw = new BufferedWriter(fw);
-           
-           //loop for jtable rows
            for(int i = 0; i < table.getRowCount(); i++){
-               //loop for jtable column
                for(int j = 0; j < table.getColumnCount(); j++){
                    bw.write(table.getModel().getValueAt(i, j)+" ");
                }
-               //break line at the begin 
-               //break line at the end 
                bw.write("\n_________\n");
            }
-           //close BufferedWriter
            bw.close();
-           //close FileWriter 
            fw.close();
            JOptionPane.showMessageDialog(null, "Data Exported");
            
