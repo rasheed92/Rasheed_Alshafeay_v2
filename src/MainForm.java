@@ -277,7 +277,7 @@ public class MainForm {
 		txt_emp_id.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Birth Date");
-		lblNewLabel.setIcon(new ImageIcon("https://i.imgur.com/3qbaG44.png"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Rasheed\\eclipse-workspace\\Fanil_Project\\Icons\\calendar.png"));
 		lblNewLabel.setBounds(32, 61, 85, 30);
 		frame.getContentPane().add(lblNewLabel);
 		
@@ -601,7 +601,7 @@ public class MainForm {
 				}
 				String Name=txtName.getText();
 				String BirthDate  = ((JTextField)dCBirth.getDateEditor().getUiComponent()).getText();
-				String StartDate  = ((JTextField)dCBirth.getDateEditor().getUiComponent()).getText();
+				String StartDate  = ((JTextField)dCStart.getDateEditor().getUiComponent()).getText();
 				String salary=textSal.getText();
 				int year=(int) Syear.getValue();
 				int month=(int) SMonth.getValue();
